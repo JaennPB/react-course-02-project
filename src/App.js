@@ -21,7 +21,10 @@ class App extends Component {
     console.log(this.state.characters);
   };
 
-  deleteHandler = () => {
+  deleteHandler = (index) => {
+    const items = [...this.state.characters];
+    items.splice(index, 1);
+    this.setState({ characters: items });
     console.log("delete");
   };
 
@@ -37,7 +40,7 @@ class App extends Component {
         <Validation inputLength={this.state.textLength} />
         <CharComp
           charArray={this.state.characters}
-          delete={this.deleteHandler}
+          delete={() => this.deleteHandler()}
         />
       </div>
     );
