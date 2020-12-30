@@ -4,10 +4,10 @@ const ValidationComp = (props) => {
   let text = null;
   if (!props.chars) {
     text = null;
-  } else if (props.chars > 5) {
+  } else if (props.chars > 3) {
     text = "Text looks good ✅";
   } else {
-    text = "Text too short ❌ (minimum 5 characters long)";
+    text = "Text too short ❌ (minimum 3 characters long)";
   }
 
   return (
