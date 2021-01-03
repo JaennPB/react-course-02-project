@@ -5,7 +5,7 @@ const CharComp = (props) => {
     display: "inline-block",
     padding: "20px",
     margin: "10px",
-    border: "2px solid #ccc",
+    border: "2px solid limegreen",
   };
 
   const btnStyle = {
@@ -13,18 +13,14 @@ const CharComp = (props) => {
     marginTop: "10px",
   };
 
-  const characters = props.charArray.map((char) => {
-    return (
-      <div style={boxStyle}>
-        {char}
-        <button style={btnStyle} onClick={props.delete}>
-          ✖
-        </button>
-      </div>
-    );
-  });
-
-  return characters;
+  return (
+    <div style={boxStyle}>
+      {props.characters}
+      <button style={btnStyle} onClick={props.delete}>
+        ✖
+      </button>
+    </div>
+  );
 };
 
 export default CharComp;

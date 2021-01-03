@@ -11,21 +11,18 @@ class App extends Component {
 
   inputHandler = (e) => {
     const innerText = e.target.value;
-    const charsArr = innerText.split("");
 
     this.setState({
       textLength: innerText.length,
-      characters: charsArr,
+      characters: [...innerText],
     });
-
-    console.log(this.state.characters);
   };
 
-  deleteHandler = (index) => {
-    const items = [...this.state.characters];
-    items.splice(index, 1);
-    this.setState({ characters: items });
-    console.log("delete");
+  deleteCharHandler = (index) => {
+    const chars = this.state.characters;
+    chars.splice(index, 1);
+    // console.log(chars);
+    this.setState({ characters: chars });
   };
 
   render() {
@@ -33,15 +30,22 @@ class App extends Component {
       padding: "10px 15px",
     };
 
+    const characters = this.state.characters.map((ch, index) => {
+      return (
+        <CharComp
+          characters={ch}
+          key={index}
+          delete={() => this.deleteCharHandler(index)}
+        />
+      );
+    });
+
     return (
       <div className="App">
         <input onChange={this.inputHandler} style={inputStyle} />
         <p>Your input length: {this.state.textLength}</p>
         <Validation inputLength={this.state.textLength} />
-        <CharComp
-          charArray={this.state.characters}
-          delete={() => this.deleteHandler()}
-        />
+        {characters}
       </div>
     );
   }
